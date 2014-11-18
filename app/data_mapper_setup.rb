@@ -5,4 +5,3 @@ require './lib/link'
 require './lib/tag'
 require './lib/user'
 DataMapper.finalize
-DataMapper.auto_upgrade!
