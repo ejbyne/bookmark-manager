@@ -6,7 +6,6 @@ class BookmarkManager < Sinatra::Base
   set :views, Proc.new { File.join(root, "..", "views") }
   set :public_folder, Proc.new { File.join(root, "..", "public") }
   enable :sessions
-  # enable :partial_underscores
   set :session_secret, 'super secret'
   set :partial_template_engine, :erb
   use Rack::Flash

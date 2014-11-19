@@ -84,13 +84,15 @@ feature 'User is signed out' do
   end
 
   scenario 'and forgets their password' do
-
+    user = User.first(:email => "test@test.com")
     visit '/sessions/new'
     click_button "Forgot Password?"
     expect(page).to have_content("Please enter your email")
     fill_in 'email', :with => 'test@test.com'
     click_button "Reset Password"
     expect(page).to have_content("Password reset email has been sent")
+    expect(user.password_token.nil?).to be false
+    expect(user.password_token_timestamp.nil?).to be false
   end
 
 end
