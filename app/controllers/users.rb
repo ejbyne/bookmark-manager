@@ -18,4 +18,14 @@ class BookmarkManager
     end
   end
 
+  get '/users/reset_password' do
+    erb :"users/reset_password"
+  end
+
+  post '/users/reset_password' do
+    @links = Link.all
+    flash.now[:notice] = "Password reset email has been sent"
+    erb :index
+  end
+
 end
