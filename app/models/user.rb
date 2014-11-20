@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'mailgun'
 
 class User
 
@@ -15,7 +16,6 @@ class User
   property :password_digest,          Text
   property :password_token,           Text
   property :password_token_timestamp, Time
-  # should we change Text to Time?
 
   def password=(password)
     @password = password
@@ -29,6 +29,16 @@ class User
     else
       nil
     end
+  end
+
+  def send_message
+    api = ENV['MAILGUN_API']
+    RestClient.post "https://#{api}"\
+    "@api.mailgun.net/v2/sandbox4478906f6e744d7e900a98a5c2509c4c.mailgun.org/messages",
+    :from => "Mailgun Sandbox <postmaster@sandbox4478906f6e744d7e900a98a5c2509c4c.mailgun.org>",
+    :to => "Edward Byne <ejbyne@gmail.com>",
+    :subject => "Bookmark Manager - password reset email",
+    :text => "Hello #{self.email}. Please follow this link within one hour to change your email: http://localhost:9292/users/change_password/#{self.password_token}."
   end
 
 end

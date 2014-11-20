@@ -81,6 +81,7 @@ feature 'User has forgotten password' do
     User.create(  :email => "test@test.com",
                   :password => 'test',
                   :password_confirmation => 'test')
+    allow_any_instance_of(User).to receive(:send_message).and_return(nil)
   end
 
   scenario 'and wants to reset the password' do
@@ -115,7 +116,7 @@ feature 'User has forgotten password' do
     expect(page).to have_content("Your password has been changed")
   end
 
-    scenario 'and tries to reset their password after an hour' do
+  scenario 'and tries to reset their password after an hour' do
     user = User.first(:email => "test@test.com")
     old_digest = user.password_digest
     visit '/sessions/new'
@@ -127,13 +128,6 @@ feature 'User has forgotten password' do
     visit "/users/change_password/#{user.password_token}"
     expect(page).to have_content("Password reset request timed out. Please request new forgotten password email")
     expect(page).to have_content("Please enter your email")
-    # fill_in 'password', :with => 'test2'
-    # fill_in 'password_confirmation', :with => 'test2'
-    # click_button 'Change Password'
-    # user = User.first(:email => "test@test.com")
-    # expect(old_digest).not_to eq(user.password_digest)
-    # expect(user.password_token).to be nil
-    # expect(page).to have_content("Your password has been changed")
   end
 
 end
