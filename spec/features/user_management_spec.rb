@@ -13,15 +13,6 @@ feature "User signs up" do
     expect(User.first.email).to eq("ed@example.com")
   end
 
-  # def sign_up(  email = "ed@example.com",
-  #               password = "oranges!")
-  #   visit '/users/new'
-  #   expect(page.status_code).to eq(200)
-  #   fill_in :email, :with => email
-  #   fill_in :password, :with => password
-  #   click_button "Sign up"
-  # end
-
   scenario "with a password that doesn't match" do
     expect{ sign_up('a@a.com', 'pass', 'wrong') }.to change(User, :count).by(0)
     expect(current_path).to eq('/users')
@@ -63,8 +54,8 @@ end
 feature 'User signs out' do
 
   before(:each) do
-    User.create(  :email => "test@test.com",
-                  :password => 'test',
+    User.create(  :email =>                 "test@test.com",
+                  :password =>              'test',
                   :password_confirmation => 'test')
   end
 
@@ -80,8 +71,8 @@ end
 feature 'User has forgotten password' do
 
   before(:each) do
-    User.create(  :email => "test@test.com",
-                  :password => 'test',
+    User.create(  :email =>                 "test@test.com",
+                  :password =>              'test',
                   :password_confirmation => 'test')
     allow_any_instance_of(User).to receive(:send_message).and_return(nil)
   end
