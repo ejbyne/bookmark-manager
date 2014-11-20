@@ -75,7 +75,7 @@ feature 'User signs out' do
 
 end
 
-feature 'User is signed out' do
+feature 'User has forgotten password' do
 
   before(:each) do
     User.create(  :email => "test@test.com",
@@ -83,16 +83,36 @@ feature 'User is signed out' do
                   :password_confirmation => 'test')
   end
 
-  scenario 'and forgets their password' do
+  scenario 'and wants to reset the password' do
     user = User.first(:email => "test@test.com")
     visit '/sessions/new'
     click_button "Forgot Password?"
     expect(page).to have_content("Please enter your email")
     fill_in 'email', :with => 'test@test.com'
-    click_button "Reset Password"
-    expect(page).to have_content("Password reset email has been sent")
+    click_button "Request password reset"
+    expect(page).to have_content("Please check your email inbox for further information")
+    user = User.first(:email => "test@test.com")
     expect(user.password_token.nil?).to be false
     expect(user.password_token_timestamp.nil?).to be false
+  end
+
+  scenario 'and has been sent a password reset link' do
+    user = User.first(:email => "test@test.com")
+    old_digest = user.password_digest
+    visit '/sessions/new'
+    click_button "Forgot Password?"
+    fill_in 'email', :with => 'test@test.com'
+    click_button "Request password reset"
+    user = User.first(:email => "test@test.com")
+    visit "/users/change_password/#{user.password_token}"
+    expect(page).to have_content("Please enter new password")
+    fill_in 'password', :with => 'test2'
+    fill_in 'password_confirmation', :with => 'test2'
+    click_button 'Change Password'
+    user = User.first(:email => "test@test.com")
+    expect(old_digest).not_to eq(user.password_digest)
+    expect(user.password_token).to be nil
+    expect(page).to have_content("Your password has been changed")
   end
 
 end
