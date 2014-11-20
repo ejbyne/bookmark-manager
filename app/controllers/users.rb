@@ -34,15 +34,21 @@ class BookmarkManager
 
   get '/users/change_password/:token' do
     @token = params[:token]
-    # user = User.first(:password_token => @token)
-    erb :"users/change_password"
+    user = User.first(:password_token => @token)
+    if Time.now < (user.password_token_timestamp + 3600)
+      erb :"users/change_password"
+    else
+      flash[:notice] = "Password reset request timed out. Please request new forgotten password email"
+      redirect to 'users/forgot_password'
+    end
   end
 
   post '/users/change_password' do
     user = User.first(:password_token => params[:token])
     user.update(  :password => params[:password],
                   :password_confirmation => params[:password_confirmation],
-                  :password_token => nil)
+                  :password_token => nil,
+                  :password_token_timestamp => nil)
     @links = Link.all
     flash.now[:notice] = "Your password has been changed"
     erb :index

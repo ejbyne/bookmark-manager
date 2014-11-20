@@ -96,7 +96,7 @@ feature 'User has forgotten password' do
     expect(user.password_token_timestamp.nil?).to be false
   end
 
-  scenario 'and has been sent a password reset link' do
+  scenario 'and resets their password within an hour' do
     user = User.first(:email => "test@test.com")
     old_digest = user.password_digest
     visit '/sessions/new'
@@ -113,6 +113,27 @@ feature 'User has forgotten password' do
     expect(old_digest).not_to eq(user.password_digest)
     expect(user.password_token).to be nil
     expect(page).to have_content("Your password has been changed")
+  end
+
+    scenario 'and tries to reset their password after an hour' do
+    user = User.first(:email => "test@test.com")
+    old_digest = user.password_digest
+    visit '/sessions/new'
+    click_button "Forgot Password?"
+    fill_in 'email', :with => 'test@test.com'
+    click_button "Request password reset"
+    Timecop.travel(Time.now + 3601)
+    user = User.first(:email => "test@test.com")
+    visit "/users/change_password/#{user.password_token}"
+    expect(page).to have_content("Password reset request timed out. Please request new forgotten password email")
+    expect(page).to have_content("Please enter your email")
+    # fill_in 'password', :with => 'test2'
+    # fill_in 'password_confirmation', :with => 'test2'
+    # click_button 'Change Password'
+    # user = User.first(:email => "test@test.com")
+    # expect(old_digest).not_to eq(user.password_digest)
+    # expect(user.password_token).to be nil
+    # expect(page).to have_content("Your password has been changed")
   end
 
 end

@@ -115,6 +115,7 @@ GEM
       sinatra
     stringex (1.5.1)
     tilt (1.4.1)
+    timecop (0.7.1)
     uuidtools (2.1.5)
     websocket (1.2.1)
     xpath (2.0.0)
@@ -135,3 +136,4 @@ DEPENDENCIES
   selenium-webdriver
   sinatra
   sinatra-partial
+  timecop
