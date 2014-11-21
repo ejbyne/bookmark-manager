@@ -27,6 +27,7 @@ class BookmarkManager
     user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
     user.password_token_timestamp = Time.now
     user.save
+    @base_url ||= "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
     user.send_message
     @links = Link.all
     flash.now[:notice] = "Please check your email inbox for further information"

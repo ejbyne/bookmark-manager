@@ -32,6 +32,7 @@ class User
     end
   end
 
+
   def send_message
     api = ENV['MAILGUN_API']
     RestClient.post "https://#{api}"\
@@ -39,7 +40,7 @@ class User
     :from => "Mailgun Sandbox <postmaster@sandbox4478906f6e744d7e900a98a5c2509c4c.mailgun.org>",
     :to => "Edward Byne <ejbyne@gmail.com>",
     :subject => "Bookmark Manager - password reset email",
-    :text => "Hello #{self.email}. Please follow this link within one hour to change your email: http://localhost:9292/users/change_password/#{self.password_token}."
+    :text => "Hello #{self.email}. Please follow this link within one hour to change your email: #{@base_url} http://localhost:9292/users/change_password/#{self.password_token}."
   end
 
 end
