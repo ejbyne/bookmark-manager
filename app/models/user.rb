@@ -1,5 +1,6 @@
 require 'bcrypt'
-require 'mailgun'
+# require 'mailgun'
+require 'rest-client'
 
 class User
 
