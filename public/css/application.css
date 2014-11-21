@@ -1,5 +1,6 @@
 body {
   background-color: #2ecc71;
+  font-family: Helvetica, Arial, Sans-serif;
 }
 
 header {
@@ -15,4 +16,16 @@ header #logo {
   margin: auto 0;
   display: flex;  
   font-family: Helvetica, Arial, Sans-serif;
+}
+
+a.button {
+  display: inline-block;
+  width: 80px;
+  background-color: gray;
+  border: 2px solid white;
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  text-align: center;
+  
 }
