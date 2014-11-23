@@ -1,5 +1,7 @@
 class BookmarkManager
 
+  BOOKMARK_URL = ENV['BOOKMARK_URL']
+
   get '/users/new' do
     @user = User.new
     erb :"users/new"
@@ -11,6 +13,8 @@ class BookmarkManager
                         :password_confirmation => params[:password_confirmation])
     if @user.save
       session[:user_id] = @user.id
+       @user.send_message("Hello #{@user.email}. Thank you for signing up to Bookmark Manager. We hope you enjoy using the site: #{BOOKMARK_URL}.")
+      flash[:notice] = "Thank you for registering, " + @user.email
       redirect to('/')
     else
       flash.now[:errors] = @user.errors.full_messages
@@ -27,7 +31,7 @@ class BookmarkManager
     user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
     user.password_token_timestamp = Time.now
     user.save
-    user.send_message
+    user.send_message("Hello #{user.email}. Please follow this link within one hour to change your email: #{BOOKMARK_URL}/users/change_password/#{user.password_token}.")
     @links = Link.all
     @tags = Tag.all
     flash[:notice] = "Please check your email inbox for further information"

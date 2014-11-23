@@ -7,7 +7,10 @@ class BookmarkManager
   post '/sessions' do
     email, password = params[:email], params[:password]
     user = User.authenticate(email, password)
-    if user
+    if user.id == session[:user_id]
+      flash[:errors] = ["You are already signed in"]
+      redirect to('/')
+    elsif user
       session[:user_id] = user.id
       redirect to('/')
     else
