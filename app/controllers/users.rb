@@ -29,6 +29,7 @@ class BookmarkManager
     user.save
     user.send_message
     @links = Link.all
+    @tags = Tag.all
     flash[:notice] = "Please check your email inbox for further information"
     redirect to '/'
   end
@@ -51,6 +52,7 @@ class BookmarkManager
                   :password_token => nil,
                   :password_token_timestamp => nil)
     @links = Link.all
+    @tags = Tag.all
     flash.now[:notice] = "Your password has been changed"
     erb :index
   end

@@ -110,7 +110,6 @@ feature 'User has forgotten password' do
     user = User.first(:email => "test@test.com")
     visit "/users/change_password/#{user.password_token}"
     expect(page).to have_content("Password reset request timed out. Please request new forgotten password email")
-    expect(page).to have_content("Please enter your email")
   end
 
 end

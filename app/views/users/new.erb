@@ -1,8 +1,9 @@
-<h1>Please sign up</h1>
-
-<form action="/users" method="post">
-  <p><input name="email" type="text" value="<%= @user.email %>" placeholder="Email"></p>
-  <p><input name="password" type="password" placeholder="Password"></p>
-  <p><input name="password_confirmation" type="password" placeholder="Confirm Password"></p>
-  <input type="submit" value="Sign up" class="button">
-</form>
+<section>
+  <h1>Please sign up</h1>
+  <form action="/users" method="post">
+    <p><input name="email" type="text" value="<%= @user.email %>" placeholder="Email"></p>
+    <p><input name="password" type="password" placeholder="Password"></p>
+    <p><input name="password_confirmation" type="password" placeholder="Confirm Password"></p>
+    <input type="submit" value="Sign up" class="button">
+  </form>
+</section>
