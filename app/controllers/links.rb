@@ -11,6 +11,7 @@ class BookmarkManager
   end
 
   get '/links/new' do
+    @links=Link.all
     erb :"links/new"
   end
 
