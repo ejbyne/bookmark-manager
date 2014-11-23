@@ -1,6 +1,21 @@
+* {
+  margin: 0;
+}
+
 body {
   background-image: url(/images/small_steps.png);
   font-family: Helvetica, Arial, Sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -80px;
 }
 
 header {
@@ -49,6 +64,10 @@ header a {
   margin-right: 5px;
   text-shadow: 0 0 2px rgba(0,0,0, 0.4);
   color: white;
+}
+
+.button.large {
+  width: 250px;
 }
 
 * {
@@ -112,6 +131,10 @@ footer p {
   padding: 5px 25px;
 }
 
+.footer, .push {
+  height: 80px;
+}
+
 .flash {
   text-align: center;
   margin: 5px;
@@ -142,6 +165,7 @@ form input[type="text"], form input[type="password"] {
   border: 1px solid black;
   font-size: 16px;
   width: 400px;
+  background-color: #ffffcc;
 }
 
 h1 {
