@@ -29,8 +29,8 @@ class BookmarkManager
     user.save
     user.send_message
     @links = Link.all
-    flash.now[:notice] = "Please check your email inbox for further information"
-    erb :index
+    flash[:notice] = "Please check your email inbox for further information"
+    redirect to '/'
   end
 
   get '/users/change_password/:token' do

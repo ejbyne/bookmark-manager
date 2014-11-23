@@ -10,7 +10,17 @@
 
   <%= partial :header %>
   <%= partial :flash_message %>
-  
+
+  <div id="links-container">
+    <ul id="links">
+      <% @links.each do |link| %>
+        <%= partial :link, :locals => {:link => link} %>
+      <% end %>
+    </ul>
+  </div>
+
   <%= yield %>
+
+  <%= partial :footer %>
 
 </body>

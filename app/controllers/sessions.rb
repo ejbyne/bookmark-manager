@@ -12,7 +12,7 @@ class BookmarkManager
       redirect to('/')
     else
       flash[:errors] = ["The email or password is incorrect"]
-      erb :"sessions/new"
+      redirect to('/sessions/new')
     end
   end
 
