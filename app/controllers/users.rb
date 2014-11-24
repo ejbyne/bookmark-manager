@@ -13,7 +13,7 @@ class BookmarkManager
                         :password_confirmation => params[:password_confirmation])
     if @user.save
       session[:user_id] = @user.id
-       @user.send_message("Hello #{@user.email}. Thank you for signing up to Bookmark Manager. We hope you enjoy using the site: #{BOOKMARK_URL}.")
+      @user.send_message("Hello #{@user.email}. Thank you for signing up to Bookmark Manager. We hope you enjoy using the site: #{BOOKMARK_URL}.")
       flash[:notice] = "Thank you for registering, " + @user.email
       redirect to('/')
     else

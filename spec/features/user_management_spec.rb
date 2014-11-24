@@ -7,6 +7,10 @@ include PasswordHelpers
 
 feature "User signs up" do
 
+  before(:each) do
+    allow_any_instance_of(User).to receive(:send_message).and_return(nil)
+  end
+
   scenario "when being logged out" do
     expect{ sign_up }.to change(User, :count).by(1)
     expect(page).to have_content("Welcome, ed@example.com")
