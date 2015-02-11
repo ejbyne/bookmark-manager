@@ -36,7 +36,7 @@ class User
     "@api.mailgun.net/v2/sandbox4478906f6e744d7e900a98a5c2509c4c.mailgun.org/messages",
     :from => "Mailgun Sandbox <postmaster@sandbox4478906f6e744d7e900a98a5c2509c4c.mailgun.org>",
     :to => "Edward Byne <ejbyne@gmail.com>",
-    :subject => "Bookmark Manager - password reset email",
+    :subject => "Bookmark Manager",
     :text => text
   end
 
