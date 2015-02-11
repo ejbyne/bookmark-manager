@@ -117,6 +117,3 @@ feature 'User has forgotten password' do
   end
 
 end
-
-
-

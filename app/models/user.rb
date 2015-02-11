@@ -1,5 +1,4 @@
 require 'bcrypt'
-# require 'mailgun'
 require 'rest-client'
 
 class User
@@ -8,9 +7,7 @@ class User
 
   attr_reader :password
   attr_accessor :password_confirmation
-  
   validates_confirmation_of :password
-  # validates_uniqueness_of :email
 
   MAILGUN_API = ENV['MAILGUN_API']
 
@@ -33,7 +30,6 @@ class User
       nil
     end
   end
-
 
   def send_message(text)
     RestClient.post "https://#{MAILGUN_API}"\

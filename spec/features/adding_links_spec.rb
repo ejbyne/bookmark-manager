@@ -32,6 +32,4 @@ feature "User adds a new link" do
     end
   end
 
-
-
 end
