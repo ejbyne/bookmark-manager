@@ -36,6 +36,14 @@ feature "User adds a new link" do
     expect(link.user_id).not_to be(nil)
   end
 
+  scenario "but a link may not be added if there is no user logged in" do
+    visit('/')
+    expect(page).not_to have_link('Add link')
+    visit('/links/new')
+    expect(page).not_to have_content('Submit a new link')
+    expect(page).to have_content('Please log in to add a link')
+  end
+
   def add_link(url, title, tags = [])
     click_link 'Add link'
     within('#container') do

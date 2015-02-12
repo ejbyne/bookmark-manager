@@ -1,6 +1,8 @@
   <header>
     <div id="logo"><a href="/">Bookmark Manager</a></div>
-    <a href="/links/new" class="button highlighted">Add link</a>
+    <% if current_user %>
+      <a href="/links/new" class="button highlighted">Add link</a>
+    <% end %>
     <div id="user-links">
       <% if current_user %>
         <span id="welcome-message">

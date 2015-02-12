@@ -11,9 +11,14 @@ class BookmarkManager
   end
 
   get '/links/new' do
-    @links = Link.all
-    @tags = Tag.all
-    erb :"links/new"
+    if current_user
+      erb :"links/new"
+    else
+      @links = Link.all
+      @tags = Tag.all
+      flash[:notice] = "Please log in to add a link"
+      erb :index
+    end
   end
 
 end
