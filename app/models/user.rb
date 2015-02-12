@@ -40,4 +40,7 @@ class User
     :text => text
   end
 
+  has n, :links
+  has n, :tags
+
 end

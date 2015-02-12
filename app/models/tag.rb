@@ -5,6 +5,7 @@ class Tag
   property :id,                       Serial
   property :text,                     String
 
-  has n,  :links,   :through => Resource
+  has n,  		:links,   :through => Resource
+  belongs_to	:user
   
 end

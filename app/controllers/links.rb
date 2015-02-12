@@ -4,9 +4,9 @@ class BookmarkManager
     url = params["url"]
     title = params["title"]
     tags = params["tags"].split(" ").map do |tag|
-      Tag.first_or_create(:text => tag)
+      Tag.first_or_create(:text => tag, :user_id => current_user.id)
     end
-    Link.create(:url => url, :title => title, :tags => tags)
+    Link.create(:url => url, :title => title, :tags => tags, :user_id => current_user.id)
     redirect to('/')
   end
 
