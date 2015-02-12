@@ -3,7 +3,8 @@ require 'spec_helper'
 feature "User adds a new link" do
 
   before(:each) do
-    User.create(  :email =>                 "test@test.com",
+    User.create(  :id =>                    1,
+                  :email =>                 "test@test.com",
                   :password =>              'test',
                   :password_confirmation => 'test')
   end
@@ -31,7 +32,7 @@ feature "User adds a new link" do
   scenario "with the user id being added to the link" do
     log_in('test@test.com', 'test')
     add_link("http://www.makersacademy.com/", "Makers Academy")
-    link = Link.new
+    link = Link.first
     expect(link.user_id).not_to be(nil)
   end
 
