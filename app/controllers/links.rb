@@ -6,7 +6,9 @@ class BookmarkManager
     tags = params["tags"].split(" ").map do |tag|
       Tag.first_or_create(:text => tag, :user_id => current_user.id)
     end
-    Link.create(:url => url, :title => title, :tags => tags, :user_id => current_user.id)
+    time = Time.now
+    Link.create(:url => url, :title => title, :tags => tags, :created_at => time, :created_at_string => 
+    time.strftime("%d-%m-%Y %H:%M"), :user_id => current_user.id)
     redirect to('/')
   end
 

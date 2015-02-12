@@ -4,7 +4,7 @@
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
   </div>
   <span class="source">
-    added yesterday by
-    <a href="#">ejbyne@gmail.com</a>
+    added <%= link.created_at_string %> by
+    <a href="#"><%= User.get(link.user_id).email %></a>
   </span>
 </li>
