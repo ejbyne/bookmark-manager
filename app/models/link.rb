@@ -5,6 +5,7 @@ class Link
   property :id,     						Serial
   property :title,  						String
   property :url,    						String
+  property :description,				Text
   property :created_at,					Time
   property :created_at_string,	String
 
