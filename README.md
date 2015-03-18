@@ -4,6 +4,8 @@
 
 This was the Week 4 project at Makers Academy. It is a bookmark manager application, similar to pineapple.io or delicious.com in spirit.
 
+The live version of the site is available [here](https://eds-bookmark-manager.herokuapp.com).
+
 The focus of the week was to learn how to use relational databases and how to integrate them into a web framework with an object relational mapper. A bookmark manager is a good use case for exploring how relational databases work, with its basic functionality being as follows:
 
 - Allow a user to add links
