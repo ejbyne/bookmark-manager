@@ -55,7 +55,7 @@ Start the Sinatra server:
 $ rackup
 ```
 
-Visit http://localhost:9292.
+Visit [http://localhost:9292](http://localhost:9292).
 
 Run the tests:
 ```
